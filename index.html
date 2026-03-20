@@ -208,6 +208,117 @@
       height:150px;
     }
 
+    /* HERO COUNTDOWN BADGE */
+    .hero-floating{
+      position:absolute;
+      right:2.8%;
+      top:17%;
+      z-index:3;
+      pointer-events:none;
+    }
+
+    .countdown-card{
+      width:min(250px, 19vw);
+      min-width:190px;
+      padding:16px 16px 14px;
+      border-radius:28px;
+      background:
+        linear-gradient(180deg, rgba(23,38,92,.56), rgba(121,76,205,.36)),
+        linear-gradient(135deg, rgba(88,166,255,.34), rgba(127,109,255,.28) 58%, rgba(255,138,92,.18));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:
+        0 16px 40px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 0 30px rgba(106,130,255,.16);
+      backdrop-filter:blur(16px) saturate(130%);
+      -webkit-backdrop-filter:blur(16px) saturate(130%);
+      animation:badgeFloat 6s ease-in-out infinite, badgePulse 2.8s ease-in-out infinite;
+      transform-origin:center;
+    }
+
+    .countdown-date{
+      font-size:clamp(1.8rem, 2.8vw, 3rem);
+      font-weight:900;
+      line-height:1;
+      letter-spacing:-.04em;
+      text-align:center;
+      color:#fff;
+      margin-bottom:10px;
+      text-shadow:0 8px 24px rgba(0,0,0,.22);
+    }
+
+    .countdown-time{
+      text-align:center;
+      font-size:clamp(.95rem, 1.25vw, 1.3rem);
+      font-weight:700;
+      color:rgba(255,255,255,.95);
+      margin-bottom:14px;
+    }
+
+    .countdown-strip{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:48px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+      color:#fff;
+      text-align:center;
+      line-height:1;
+    }
+
+    .countdown-prefix{
+      font-size:.8rem;
+      font-weight:800;
+      letter-spacing:.04em;
+      opacity:.95;
+      white-space:nowrap;
+    }
+
+    .countdown-value{
+      display:flex;
+      align-items:baseline;
+      gap:5px;
+      white-space:nowrap;
+    }
+
+    .countdown-days{
+      font-size:clamp(1.55rem, 2vw, 2.2rem);
+      font-weight:900;
+      letter-spacing:-.04em;
+    }
+
+    .countdown-label{
+      font-size:.8rem;
+      font-weight:800;
+      opacity:.9;
+      letter-spacing:.04em;
+    }
+
+    @keyframes badgeFloat{
+      0%,100%{ transform:translateY(0px); }
+      50%{ transform:translateY(-6px); }
+    }
+
+    @keyframes badgePulse{
+      0%,100%{
+        box-shadow:
+          0 16px 40px rgba(0,0,0,.28),
+          inset 0 1px 0 rgba(255,255,255,.12),
+          0 0 30px rgba(106,130,255,.16);
+      }
+      50%{
+        box-shadow:
+          0 20px 48px rgba(0,0,0,.30),
+          inset 0 1px 0 rgba(255,255,255,.14),
+          0 0 42px rgba(127,109,255,.24);
+      }
+    }
+
     /* CARDS */
     .cards{
       display:grid;
@@ -433,6 +544,32 @@
       .cards{grid-template-columns:1fr 1fr}
       .features-wrap{grid-template-columns:1fr 1fr}
       .video-grid{grid-template-columns:1fr 1fr}
+
+      .hero-floating{
+        right:2%;
+        top:15%;
+      }
+
+      .countdown-card{
+        width:210px;
+        min-width:unset;
+        padding:14px 14px 12px;
+      }
+    }
+
+    @media (max-width:900px){
+      .hero-floating{
+        position:relative;
+        top:auto;
+        right:auto;
+        display:flex;
+        justify-content:center;
+        margin:22px auto 0;
+      }
+
+      .countdown-card{
+        width:min(320px, 88vw);
+      }
     }
 
     @media (max-width:720px){
@@ -474,12 +611,49 @@
       .bottom-hero{
         padding:100px 12px;
       }
+
+      .countdown-date{
+        font-size:2rem;
+      }
+
+      .countdown-time{
+        font-size:1rem;
+      }
+
+      .countdown-strip{
+        min-height:44px;
+        padding:10px 12px;
+        gap:6px;
+      }
+
+      .countdown-prefix,
+      .countdown-label{
+        font-size:.72rem;
+      }
+
+      .countdown-days{
+        font-size:1.45rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <section class="hero" id="top">
+    <div class="hero-floating">
+      <div class="countdown-card" aria-label="Compte à rebours de l'événement">
+        <div class="countdown-date">8 MAI</div>
+        <div class="countdown-time">11h00 — 18h00</div>
+        <div class="countdown-strip">
+          <span class="countdown-prefix">DANS</span>
+          <span class="countdown-value">
+            <span class="countdown-days" id="countdown-days">--</span>
+            <span class="countdown-label">JOURS</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
     <div class="hero-inner">
       <span class="eyebrow">Événement spécial • UniPop</span>
 
@@ -489,7 +663,7 @@
 
       <p>
         Le 8 mai, de 11h00 à 18h00, découvrez l’univers UniPop à travers une journée vivante, inspirante et immersive :
-ateliers, rencontres, découvertes, démonstrations et moments partagés dans une ambiance conviviale.
+        ateliers, rencontres, découvertes, démonstrations et moments partagés dans une ambiance conviviale.
       </p>
 
       <div class="hero-actions">
@@ -659,6 +833,26 @@ ateliers, rencontres, découvertes, démonstrations et moments partagés dans un
           playPromise.catch(() => {});
         }
       });
+
+      const countdownDays = document.getElementById('countdown-days');
+
+      function updateCountdown() {
+        const now = new Date();
+        const year = now.getFullYear();
+        let eventDate = new Date(year, 4, 8, 11, 0, 0); // 8 mai, 11h00
+
+        if (now > eventDate) {
+          eventDate = new Date(year + 1, 4, 8, 11, 0, 0);
+        }
+
+        const diff = eventDate - now;
+        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+        countdownDays.textContent = days;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
     });
   </script>
 </body>
