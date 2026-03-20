@@ -16,13 +16,13 @@
       --muted:#c8d6ef;
       --line:rgba(255,255,255,.10);
 
-      --accent1:#58a6ff;
-      --accent2:#6f84ff;
-      --accent3:#7f6dff;
-      --accent4:#57d4cf;
+      --accent1:#7ab8ff;
+      --accent2:#7a8dff;
+      --accent3:#9b7cff;
+      --accent4:#d28be8;
 
-      --btn1:#58a6ff;
-      --btn2:#6d82ff;
+      --btn1:#5f8dff;
+      --btn2:#8b78ff;
 
       --shadow:0 18px 50px rgba(0,0,0,.28);
       --radius-xl:28px;
@@ -82,7 +82,7 @@
     }
 
     .section-title .accent{
-      background:linear-gradient(90deg,var(--accent1),var(--accent3));
+      background:linear-gradient(90deg, #7ab8ff 0%, #7a8dff 45%, #9b7cff 100%);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
@@ -104,17 +104,24 @@
       min-height:58px;
       padding:0 28px;
       border-radius:16px;
-      background:linear-gradient(135deg,var(--btn1),var(--btn2));
+      background:
+        linear-gradient(135deg, rgba(95,141,255,.92), rgba(139,120,255,.92)),
+        linear-gradient(180deg, rgba(36,64,126,.22), rgba(104,84,176,.18));
       color:#fff;
       font-weight:800;
       letter-spacing:.01em;
-      box-shadow:0 12px 35px rgba(69,122,255,.28);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:
+        0 12px 35px rgba(77,97,212,.24),
+        inset 0 1px 0 rgba(255,255,255,.10);
       transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
     }
 
     .btn:hover{
       transform:translateY(-2px);
-      box-shadow:0 18px 40px rgba(69,122,255,.34);
+      box-shadow:
+        0 18px 40px rgba(88,94,210,.30),
+        inset 0 1px 0 rgba(255,255,255,.12);
     }
 
     .btn-outline{
@@ -142,7 +149,7 @@
       inset:0;
       background:
         linear-gradient(180deg, rgba(5,10,18,.34) 0%, rgba(6,14,27,.52) 35%, rgba(8,18,36,.82) 100%),
-        linear-gradient(120deg, rgba(76,118,255,.34), rgba(78,216,199,.10));
+        linear-gradient(120deg, rgba(95,141,255,.20), rgba(139,120,255,.12));
       z-index:1;
     }
 
@@ -416,7 +423,9 @@
       place-items:center;
       font-size:1.6rem;
       font-weight:900;
-      background:linear-gradient(135deg, rgba(88,166,255,.20), rgba(127,109,255,.18));
+      background:
+        linear-gradient(135deg, rgba(95,141,255,.22), rgba(139,120,255,.18)),
+        linear-gradient(180deg, rgba(36,64,126,.18), rgba(104,84,176,.14));
       border:1px solid rgba(255,255,255,.08);
       color:#e8f2ff;
     }
@@ -506,7 +515,7 @@
       inset:0;
       background:
         linear-gradient(180deg, rgba(8,18,36,.86), rgba(8,18,36,.95)),
-        linear-gradient(120deg, rgba(88,166,255,.22), rgba(127,109,255,.22));
+        linear-gradient(120deg, rgba(95,141,255,.18), rgba(139,120,255,.18));
       z-index:1;
     }
 
@@ -828,7 +837,7 @@
 
     <div class="bottom-content">
       <span class="eyebrow">Rejoignez l’aventure</span>
-      <h2>Prêt à vivre <span style="background:linear-gradient(90deg,#58a6ff,#7f6dff);-webkit-background-clip:text;background-clip:text;color:transparent;">UniPop in Action</span> ?</h2>
+      <h2>Prêt à vivre <span style="background:linear-gradient(90deg,#7ab8ff 0%, #7a8dff 45%, #9b7cff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;">UniPop in Action</span> ?</h2>
       <p>
         Venez découvrir un événement vivant, accessible et inspirant, pensé pour mettre en lumière l’énergie d'UniPop et la richesse de ses activités.
       </p>
