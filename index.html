@@ -208,30 +208,34 @@
       height:150px;
     }
 
-      /* HERO COUNTDOWN BADGE */
+    /* HERO COUNTDOWN BADGE */
     .hero-floating{
       position:absolute;
       right:2.8%;
       top:17%;
       z-index:3;
       pointer-events:none;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
     }
 
     .countdown-card{
-      width:min(255px, 19vw);
-      min-width:200px;
-      padding:20px 20px 18px;
-      border-radius:30px;
+      position:relative;
+      width:min(300px, 22vw);
+      min-width:235px;
+      padding:16px 22px 14px;
+      border-radius:32px;
       background:
-        radial-gradient(circle at 20% 15%, rgba(93,184,255,.30), transparent 34%),
-        radial-gradient(circle at 85% 20%, rgba(206,112,255,.22), transparent 34%),
-        linear-gradient(135deg, rgba(44,128,255,.34), rgba(123,99,255,.28) 58%, rgba(232,124,189,.16)),
-        linear-gradient(180deg, rgba(20,31,78,.52), rgba(84,66,170,.20));
-      border:1px solid rgba(255,255,255,.22);
+        radial-gradient(circle at 16% 16%, rgba(111,193,255,.22), transparent 30%),
+        radial-gradient(circle at 86% 18%, rgba(214,120,255,.18), transparent 33%),
+        linear-gradient(135deg, rgba(56,138,255,.30), rgba(122,101,255,.24) 58%, rgba(212,117,187,.12)),
+        linear-gradient(180deg, rgba(36,64,126,.42), rgba(104,84,176,.24));
+      border:1px solid rgba(255,255,255,.16);
       box-shadow:
-        0 18px 44px rgba(0,0,0,.28),
-        inset 0 1px 0 rgba(255,255,255,.16),
-        0 0 22px rgba(74,134,255,.22);
+        0 16px 38px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 0 18px rgba(93,143,255,.14);
       backdrop-filter:blur(18px) saturate(145%);
       -webkit-backdrop-filter:blur(18px) saturate(145%);
       animation:badgeFloat 6s ease-in-out infinite, badgePulse 2.8s ease-in-out infinite;
@@ -245,34 +249,34 @@
       position:absolute;
       inset:0;
       border-radius:inherit;
-      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0) 42%);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,0) 44%);
       pointer-events:none;
     }
 
     .countdown-date{
       position:relative;
-      font-size:clamp(2rem, 2.9vw, 3.2rem);
+      font-size:clamp(1.95rem, 2.7vw, 3rem);
       font-weight:900;
       line-height:1;
       letter-spacing:-.04em;
       text-align:center;
       color:#fff;
-      margin-bottom:10px;
-      text-shadow:0 8px 24px rgba(0,0,0,.22);
+      margin-bottom:8px;
+      text-shadow:0 8px 24px rgba(0,0,0,.18);
     }
 
     .countdown-time{
       position:relative;
       text-align:center;
-      font-size:clamp(1rem, 1.28vw, 1.34rem);
+      font-size:clamp(.98rem, 1.1vw, 1.2rem);
       font-weight:600;
       color:rgba(255,255,255,.92);
-      margin-bottom:14px;
-      text-shadow:0 4px 12px rgba(0,0,0,.18);
+      margin-bottom:0;
+      text-shadow:0 4px 12px rgba(0,0,0,.16);
     }
 
     .countdown-strip{
-      position:relative;
+      margin-top:8px;
       display:block;
       padding:0;
       background:transparent;
@@ -280,16 +284,16 @@
       box-shadow:none;
       color:#fff;
       text-align:center;
-      line-height:1.15;
+      line-height:1.1;
+      text-shadow:0 4px 12px rgba(0,0,0,.16);
     }
 
     .countdown-prefix{
       font-size:.92rem;
-      font-weight:500;
+      font-weight:400;
       letter-spacing:0;
       opacity:.92;
-      white-space:normal;
-      margin-right:4px;
+      margin-right:5px;
     }
 
     .countdown-value{
@@ -300,15 +304,15 @@
     }
 
     .countdown-days{
-      font-size:clamp(1.65rem, 2.05vw, 2.2rem);
+      font-size:clamp(1.75rem, 1.9vw, 2.1rem);
       font-weight:900;
       letter-spacing:-.04em;
-      color:#ffffff;
+      color:#fff;
     }
 
     .countdown-label{
       font-size:.92rem;
-      font-weight:500;
+      font-weight:400;
       opacity:.92;
       letter-spacing:0;
     }
@@ -321,15 +325,15 @@
     @keyframes badgePulse{
       0%,100%{
         box-shadow:
-          0 18px 44px rgba(0,0,0,.28),
-          inset 0 1px 0 rgba(255,255,255,.16),
-          0 0 22px rgba(74,134,255,.22);
+          0 16px 38px rgba(0,0,0,.22),
+          inset 0 1px 0 rgba(255,255,255,.12),
+          0 0 18px rgba(93,143,255,.14);
       }
       50%{
         box-shadow:
-          0 22px 52px rgba(0,0,0,.30),
-          inset 0 1px 0 rgba(255,255,255,.18),
-          0 0 34px rgba(127,109,255,.28);
+          0 20px 46px rgba(0,0,0,.26),
+          inset 0 1px 0 rgba(255,255,255,.15),
+          0 0 24px rgba(127,109,255,.20);
       }
     }
 
@@ -565,9 +569,13 @@
       }
 
       .countdown-card{
-        width:210px;
+        width:240px;
         min-width:unset;
-        padding:16px 16px 14px;
+        padding:14px 18px 12px;
+      }
+
+      .countdown-strip{
+        margin-top:8px;
       }
     }
 
@@ -583,6 +591,10 @@
 
       .countdown-card{
         width:min(320px, 88vw);
+      }
+
+      .countdown-strip{
+        margin-top:10px;
       }
     }
 
@@ -635,18 +647,17 @@
       }
 
       .countdown-strip{
-        min-height:auto;
+        margin-top:10px;
         padding:0;
-        gap:4px;
       }
 
       .countdown-prefix,
       .countdown-label{
-        font-size:.8rem;
+        font-size:.9rem;
       }
 
       .countdown-days{
-        font-size:1.45rem;
+        font-size:1.6rem;
       }
     }
   </style>
@@ -658,13 +669,14 @@
       <div class="countdown-card" aria-label="Compte à rebours de l'événement">
         <div class="countdown-date">8 MAI</div>
         <div class="countdown-time">11h00 — 18h00</div>
-        <div class="countdown-strip">
-          <span class="countdown-prefix">Dans</span>
-          <span class="countdown-value">
-            <span class="countdown-days" id="countdown-days">--</span>
-            <span class="countdown-label">jours</span>
-          </span>
-        </div>
+      </div>
+
+      <div class="countdown-strip">
+        <span class="countdown-prefix">Dans</span>
+        <span class="countdown-value">
+          <span class="countdown-days" id="countdown-days">--</span>
+          <span class="countdown-label">jours</span>
+        </span>
       </div>
     </div>
 
@@ -853,7 +865,7 @@
       function updateCountdown() {
         const now = new Date();
         const year = now.getFullYear();
-        let eventDate = new Date(year, 4, 8, 11, 0, 0); // 8 mai, 11h00
+        let eventDate = new Date(year, 4, 8, 11, 0, 0);
 
         if (now > eventDate) {
           eventDate = new Date(year + 1, 4, 8, 11, 0, 0);
