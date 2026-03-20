@@ -1,169 +1,859 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>UniPop in Action</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>UniPop in Action</title>
 
-<style>
-:root{
-  --text:#f4f7ff;
-}
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0b1730;
+      --bg3:#0f2140;
+      --card:#10233f;
+      --card2:#162d50;
+      --text:#f4f7ff;
+      --muted:#c8d6ef;
+      --line:rgba(255,255,255,.10);
 
-body{
-  margin:0;
-  font-family:Inter, system-ui;
-  color:var(--text);
-  background:#07111f;
-}
+      --accent1:#58a6ff;
+      --accent2:#6f84ff;
+      --accent3:#7f6dff;
+      --accent4:#57d4cf;
 
-/* HERO */
-.hero{
-  position:relative;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
+      --btn1:#58a6ff;
+      --btn2:#6d82ff;
 
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url('assets/hero.jpg') center/cover;
-  z-index:0;
-}
+      --shadow:0 18px 50px rgba(0,0,0,.28);
+      --radius-xl:28px;
+      --radius-lg:22px;
+      --radius-md:18px;
+      --max:1280px;
+    }
 
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.7));
-  z-index:1;
-}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(88,166,255,.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(87,212,207,.08), transparent 22%),
+        linear-gradient(180deg, #07111f 0%, #0b1730 35%, #0d1c37 100%);
+      overflow-x:hidden;
+    }
 
-.hero-inner{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  max-width:800px;
-}
+    a{text-decoration:none;color:inherit}
+    img,video{display:block;max-width:100%}
 
-/* FLOATING BADGE */
-.hero-floating{
-  position:absolute;
-  right:3%;
-  top:18%;
-  z-index:3;
-}
+    .container{
+      width:min(var(--max), calc(100% - 40px));
+      margin:0 auto;
+    }
 
-/* NEW CLEAN STYLE */
-.countdown-card{
-  padding:18px 22px;
-  border-radius:26px;
-  background:linear-gradient(135deg, rgba(88,166,255,.35), rgba(127,109,255,.35));
-  backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.2);
-  box-shadow:0 20px 50px rgba(0,0,0,.3);
-  text-align:center;
-  min-width:220px;
+    .section{
+      position:relative;
+      padding:90px 0;
+    }
 
-  animation:float 6s ease-in-out infinite, pulse 3s ease-in-out infinite;
-}
+    .center{text-align:center}
 
-.countdown-date{
-  font-size:2.2rem;
-  font-weight:900;
-}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      color:#dfe8ff;
+      backdrop-filter:blur(10px);
+      font-size:.95rem;
+      letter-spacing:.02em;
+    }
 
-.countdown-time{
-  font-size:1.1rem;
-  opacity:.9;
-  margin-top:4px;
-}
+    .section-title{
+      margin:18px 0 14px;
+      font-size:clamp(2rem, 4vw, 3.6rem);
+      line-height:1.02;
+      font-weight:900;
+      letter-spacing:-.03em;
+    }
 
-.countdown-sub{
-  margin-top:10px;
-  font-size:.95rem;
-  opacity:.85;
-}
+    .section-title .accent{
+      background:linear-gradient(90deg,var(--accent1),var(--accent3));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
 
-/* ANIMATIONS */
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
-}
+    .section-sub{
+      margin:0 auto;
+      max-width:820px;
+      color:var(--muted);
+      font-size:1.08rem;
+      line-height:1.7;
+    }
 
-@keyframes pulse{
-  0%,100%{box-shadow:0 20px 50px rgba(0,0,0,.3)}
-  50%{box-shadow:0 25px 60px rgba(120,120,255,.4)}
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:58px;
+      padding:0 28px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--btn1),var(--btn2));
+      color:#fff;
+      font-weight:800;
+      letter-spacing:.01em;
+      box-shadow:0 12px 35px rgba(69,122,255,.28);
+      transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
 
-/* TEXT */
-h1{
-  font-size:5rem;
-  margin:0;
-}
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 40px rgba(69,122,255,.34);
+    }
 
-p{
-  font-size:1.2rem;
-  line-height:1.6;
-}
+    .btn-outline{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:none;
+    }
 
-/* MOBILE */
-@media (max-width:900px){
-  .hero-floating{
-    position:relative;
-    top:auto;
-    right:auto;
-    margin-top:30px;
-  }
-}
-</style>
+    .spacer-32{height:32px}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      padding:70px 0 110px;
+      isolation:isolate;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(5,10,18,.34) 0%, rgba(6,14,27,.52) 35%, rgba(8,18,36,.82) 100%),
+        linear-gradient(120deg, rgba(76,118,255,.34), rgba(78,216,199,.10));
+      z-index:1;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:url('assets/hero.jpg');
+      background-size:cover;
+      background-position:center center;
+      background-repeat:no-repeat;
+      transform:scale(1.03);
+      z-index:0;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:min(var(--max), calc(100% - 40px));
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .hero h1{
+      margin:18px auto 18px;
+      max-width:1100px;
+      font-size:clamp(3rem, 7vw, 6.8rem);
+      line-height:.95;
+      letter-spacing:-.05em;
+      font-weight:900;
+      text-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .hero h1 .script{
+      font-style:italic;
+      font-weight:800;
+      color:#dff2ff;
+    }
+
+    .hero p{
+      max-width:860px;
+      margin:0 auto 30px;
+      font-size:clamp(1.05rem, 2vw, 1.35rem);
+      line-height:1.7;
+      color:#eaf2ff;
+    }
+
+    .hero-actions{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .hero-wave{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-1px;
+      z-index:2;
+      width:100%;
+      height:150px;
+    }
+
+    /* HERO COUNTDOWN BADGE */
+    .hero-floating{
+      position:absolute;
+      right:2.8%;
+      top:17%;
+      z-index:3;
+      pointer-events:none;
+    }
+
+    .countdown-card{
+      width:min(250px, 19vw);
+      min-width:190px;
+      padding:18px 18px 16px;
+      border-radius:28px;
+      background:
+        linear-gradient(135deg, rgba(69,144,255,.34), rgba(127,109,255,.30) 58%, rgba(232,120,184,.18)),
+        linear-gradient(180deg, rgba(20,31,78,.52), rgba(89,74,173,.22));
+      border:1px solid rgba(255,255,255,.20);
+      box-shadow:
+        0 18px 44px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 0 26px rgba(102,132,255,.14);
+      backdrop-filter:blur(18px) saturate(135%);
+      -webkit-backdrop-filter:blur(18px) saturate(135%);
+      animation:badgeFloat 6s ease-in-out infinite, badgePulse 2.8s ease-in-out infinite;
+      transform-origin:center;
+      text-align:center;
+    }
+
+    .countdown-date{
+      font-size:clamp(2rem, 2.9vw, 3.15rem);
+      font-weight:900;
+      line-height:1;
+      letter-spacing:-.04em;
+      text-align:center;
+      color:#fff;
+      margin-bottom:10px;
+      text-shadow:0 8px 24px rgba(0,0,0,.22);
+    }
+
+    .countdown-time{
+      text-align:center;
+      font-size:clamp(1rem, 1.28vw, 1.34rem);
+      font-weight:700;
+      color:rgba(255,255,255,.94);
+      margin-bottom:12px;
+      text-shadow:0 4px 12px rgba(0,0,0,.18);
+    }
+
+    .countdown-strip{
+      display:block;
+      min-height:auto;
+      padding:0;
+      border-radius:0;
+      background:transparent;
+      border:0;
+      box-shadow:none;
+      color:#fff;
+      text-align:center;
+      line-height:1.15;
+    }
+
+    .countdown-prefix{
+      font-size:.86rem;
+      font-weight:500;
+      letter-spacing:.01em;
+      opacity:.92;
+      white-space:normal;
+      margin-right:4px;
+    }
+
+    .countdown-value{
+      display:inline-flex;
+      align-items:baseline;
+      gap:4px;
+      white-space:nowrap;
+    }
+
+    .countdown-days{
+      font-size:clamp(1.55rem, 2vw, 2.15rem);
+      font-weight:900;
+      letter-spacing:-.04em;
+    }
+
+    .countdown-label{
+      font-size:.86rem;
+      font-weight:500;
+      opacity:.92;
+      letter-spacing:.01em;
+    }
+
+    @keyframes badgeFloat{
+      0%,100%{ transform:translateY(0px); }
+      50%{ transform:translateY(-6px); }
+    }
+
+    @keyframes badgePulse{
+      0%,100%{
+        box-shadow:
+          0 18px 44px rgba(0,0,0,.28),
+          inset 0 1px 0 rgba(255,255,255,.12),
+          0 0 26px rgba(102,132,255,.14);
+      }
+      50%{
+        box-shadow:
+          0 22px 52px rgba(0,0,0,.30),
+          inset 0 1px 0 rgba(255,255,255,.14),
+          0 0 34px rgba(127,109,255,.22);
+      }
+    }
+
+    /* CARDS */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+      margin-top:46px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+      transition:transform .25s ease, border-color .25s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(115,157,255,.38);
+    }
+
+    .card-media{
+      aspect-ratio:16/10;
+      overflow:hidden;
+    }
+
+    .card-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .card-body{
+      padding:22px 22px 24px;
+      background:linear-gradient(180deg, rgba(15,36,66,.92), rgba(13,28,51,.96));
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:1.35rem;
+      line-height:1.2;
+      font-weight:850;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:1rem;
+    }
+
+    /* FEATURES */
+    .features-wrap{
+      margin-top:44px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .feature{
+      padding:24px 18px;
+      border-radius:22px;
+      text-align:center;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .feature .icon{
+      width:62px;
+      height:62px;
+      margin:0 auto 14px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-size:1.6rem;
+      font-weight:900;
+      background:linear-gradient(135deg, rgba(88,166,255,.20), rgba(127,109,255,.18));
+      border:1px solid rgba(255,255,255,.08);
+      color:#e8f2ff;
+    }
+
+    .feature h4{
+      margin:0;
+      font-size:1.1rem;
+      font-weight:800;
+      line-height:1.35;
+    }
+
+    /* MOMENTS */
+    .moments{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(88,166,255,.14), transparent 25%),
+        radial-gradient(circle at 80% 15%, rgba(127,109,255,.16), transparent 30%),
+        linear-gradient(180deg, rgba(15,33,59,.92), rgba(10,22,43,.98));
+      border-top:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .video-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:42px;
+    }
+
+    .video-card{
+      position:relative;
+      border-radius:22px;
+      overflow:hidden;
+      background:#09111f;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+      aspect-ratio:9/16;
+      min-height:360px;
+    }
+
+    .video-card video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      background:#000;
+    }
+
+    .video-label{
+      position:absolute;
+      left:14px;
+      bottom:14px;
+      right:14px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(5,10,20,.55);
+      backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:.95rem;
+      font-weight:700;
+      line-height:1.35;
+    }
+
+    /* BOTTOM HERO */
+    .bottom-hero{
+      position:relative;
+      padding:120px 20px;
+      text-align:center;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .bottom-hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:url('assets/hero.jpg');
+      background-size:cover;
+      background-position:center center;
+      background-repeat:no-repeat;
+      z-index:0;
+      transform:scale(1.03);
+    }
+
+    .bottom-overlay{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(8,18,36,.86), rgba(8,18,36,.95)),
+        linear-gradient(120deg, rgba(88,166,255,.22), rgba(127,109,255,.22));
+      z-index:1;
+    }
+
+    .bottom-content{
+      position:relative;
+      z-index:2;
+      width:min(var(--max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .bottom-content h2{
+      margin:0 0 14px;
+      font-size:clamp(2rem,4vw,3.2rem);
+      line-height:1.05;
+      font-weight:900;
+      letter-spacing:-.03em;
+    }
+
+    .bottom-content p{
+      max-width:780px;
+      margin:0 auto 24px;
+      color:#d7e4fb;
+      line-height:1.7;
+      font-size:1.04rem;
+    }
+
+    .wave-top{
+      position:absolute;
+      top:-1px;
+      left:0;
+      width:100%;
+      height:120px;
+      z-index:2;
+    }
+
+    .wave-bottom{
+      position:absolute;
+      bottom:-1px;
+      left:0;
+      width:100%;
+      height:120px;
+      z-index:2;
+    }
+
+    footer{
+      padding:34px 20px 48px;
+      text-align:center;
+      color:#b8c9e9;
+      font-size:.95rem;
+    }
+
+    @media (max-width:1100px){
+      .cards{grid-template-columns:1fr 1fr}
+      .features-wrap{grid-template-columns:1fr 1fr}
+      .video-grid{grid-template-columns:1fr 1fr}
+
+      .hero-floating{
+        right:2%;
+        top:15%;
+      }
+
+      .countdown-card{
+        width:210px;
+        min-width:unset;
+        padding:16px 16px 14px;
+      }
+    }
+
+    @media (max-width:900px){
+      .hero-floating{
+        position:relative;
+        top:auto;
+        right:auto;
+        display:flex;
+        justify-content:center;
+        margin:22px auto 0;
+      }
+
+      .countdown-card{
+        width:min(320px, 88vw);
+      }
+    }
+
+    @media (max-width:720px){
+      .hero{
+        min-height:auto;
+        padding:100px 0 90px;
+      }
+
+      .cards,
+      .features-wrap,
+      .video-grid{
+        grid-template-columns:1fr;
+      }
+
+      .video-card{
+        aspect-ratio:9/13;
+        min-height:320px;
+      }
+
+      .section{
+        padding:70px 0;
+      }
+
+      .container,
+      .hero-inner,
+      .bottom-content{
+        width:min(var(--max), calc(100% - 24px));
+      }
+
+      .hero-wave{
+        height:90px;
+      }
+
+      .wave-top,
+      .wave-bottom{
+        height:90px;
+      }
+
+      .bottom-hero{
+        padding:100px 12px;
+      }
+
+      .countdown-date{
+        font-size:2rem;
+      }
+
+      .countdown-time{
+        font-size:1rem;
+      }
+
+      .countdown-strip{
+        min-height:auto;
+        padding:0;
+        gap:4px;
+      }
+
+      .countdown-prefix,
+      .countdown-label{
+        font-size:.8rem;
+      }
+
+      .countdown-days{
+        font-size:1.45rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<section class="hero">
-
-  <!-- FLOATING -->
-  <div class="hero-floating">
-    <div class="countdown-card">
-      <div class="countdown-date">8 MAI</div>
-      <div class="countdown-time">11h00 — 18h00</div>
-      <div class="countdown-sub" id="countdown">Dans ...</div>
+  <section class="hero" id="top">
+    <div class="hero-floating">
+      <div class="countdown-card" aria-label="Compte à rebours de l'événement">
+        <div class="countdown-date">8 MAI</div>
+        <div class="countdown-time">11h00 — 18h00</div>
+        <div class="countdown-strip">
+          <span class="countdown-prefix">Dans</span>
+          <span class="countdown-value">
+            <span class="countdown-days" id="countdown-days">--</span>
+            <span class="countdown-label">jours</span>
+          </span>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- CONTENT -->
-  <div class="hero-inner">
-    <h1>UniPop in Action</h1>
-    <p>
-      Le 8 mai, de 11h00 à 18h00, découvrez l’univers UniPop à travers une journée vivante, inspirante et immersive.
-    </p>
-  </div>
+    <div class="hero-inner">
+      <span class="eyebrow">Événement spécial • UniPop</span>
 
-</section>
+      <h1>
+        UniPop <span class="script">in Action</span>
+      </h1>
 
-<script>
-function updateCountdown(){
-  const now = new Date();
-  const event = new Date(now.getFullYear(), 4, 8, 11, 0, 0);
+      <p>
+        Le 8 mai, de 11h00 à 18h00, découvrez l’univers UniPop à travers une journée vivante, inspirante et immersive :
+        ateliers, rencontres, découvertes, démonstrations et moments partagés dans une ambiance conviviale.
+      </p>
 
-  if(now > event){
-    event.setFullYear(event.getFullYear()+1);
-  }
+      <div class="hero-actions">
+        <a class="btn" href="#programme">Découvrir le programme</a>
+        <a class="btn btn-outline" href="#moments">Voir les moments forts</a>
+      </div>
+    </div>
 
-  const diff = event - now;
-  const days = Math.ceil(diff / (1000*60*60*24));
+    <svg class="hero-wave" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#0b1730" d="M0,160 C220,210 340,40 720,90 C1020,130 1190,220 1440,130 L1440,200 L0,200 Z"></path>
+    </svg>
+  </section>
 
-  document.getElementById("countdown").innerText = "Dans " + days + " jours";
-}
+  <section class="section center" id="programme">
+    <div class="container">
+      <span class="eyebrow">Vivez l’expérience</span>
+      <h2 class="section-title">Explorez <span class="accent">UniPop in Action</span></h2>
+      <p class="section-sub">
+        Une journée pensée pour faire découvrir l’énergie, la diversité et l’esprit d’ouverture de UniPop.
+      </p>
 
-updateCountdown();
-setInterval(updateCountdown, 60000);
-</script>
+      <div class="cards">
+        <article class="card">
+          <div class="card-media">
+            <img src="assets/card1.jpg" alt="Ateliers et workshops">
+          </div>
+          <div class="card-body">
+            <h3>Ateliers & Workshops</h3>
+            <p>
+              Participez à des expériences interactives, découvrez des univers variés et échangez directement avec les intervenants.
+            </p>
+          </div>
+        </article>
 
+        <article class="card">
+          <div class="card-media">
+            <img src="assets/card2.jpg" alt="Activités et animations">
+          </div>
+          <div class="card-body">
+            <h3>Activités & Animations</h3>
+            <p>
+              Profitez d’animations vivantes, de démonstrations et de moments ludiques pour tous les publics.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <img src="assets/card3.jpg" alt="Ambiance et rencontres">
+          </div>
+          <div class="card-body">
+            <h3>Ambiance & Rencontres</h3>
+            <p>
+              Rencontrez l’équipe, les partenaires et le public dans une atmosphère chaleureuse, créative et accueillante.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section center">
+    <div class="container">
+      <span class="eyebrow">Ce qui vous attend</span>
+      <h2 class="section-title">Une journée riche en <span class="accent">découvertes</span></h2>
+      <p class="section-sub">
+        Un programme rythmé par l’échange, la créativité, l’expérimentation et l’envie d’apprendre autrement.
+      </p>
+
+      <div class="features-wrap">
+        <div class="feature">
+          <div class="icon">✦</div>
+          <h4>Conférences inspirantes</h4>
+        </div>
+
+        <div class="feature">
+          <div class="icon">✦</div>
+          <h4>Expériences créatives</h4>
+        </div>
+
+        <div class="feature">
+          <div class="icon">✦</div>
+          <h4>Food & Drinks</h4>
+        </div>
+
+        <div class="feature">
+          <div class="icon">✦</div>
+          <h4>Musique & ambiance</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section moments center" id="moments">
+    <div class="container">
+      <span class="eyebrow">Les moments forts</span>
+      <h2 class="section-title">Des instants à <span class="accent">vivre sur place</span></h2>
+      <p class="section-sub">
+        Créativité, échanges et découvertes — laissez-vous inspirer par l’énergie du moment
+      </p>
+
+      <div class="video-grid">
+        <div class="video-card">
+          <video autoplay muted loop playsinline preload="auto">
+            <source src="assets/video1.mp4" type="video/mp4">
+          </video>
+          <div class="video-label">Atelier en direct</div>
+        </div>
+
+        <div class="video-card">
+          <video autoplay muted loop playsinline preload="auto">
+            <source src="assets/video2.mp4" type="video/mp4">
+          </video>
+          <div class="video-label">Ambiance & public</div>
+        </div>
+
+        <div class="video-card">
+          <video autoplay muted loop playsinline preload="auto">
+            <source src="assets/video3.mp4" type="video/mp4">
+          </video>
+          <div class="video-label">Démonstration</div>
+        </div>
+
+        <div class="video-card">
+          <video autoplay muted loop playsinline preload="auto">
+            <source src="assets/video4.mp4" type="video/mp4">
+          </video>
+          <div class="video-label">Moment fort</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottom-hero" id="participer">
+    <div class="bottom-overlay"></div>
+
+    <div class="bottom-content">
+      <span class="eyebrow">Rejoignez l’aventure</span>
+      <h2>Prêt à vivre <span style="background:linear-gradient(90deg,#58a6ff,#7f6dff);-webkit-background-clip:text;background-clip:text;color:transparent;">UniPop in Action</span> ?</h2>
+      <p>
+        Venez découvrir un événement vivant, accessible et inspirant, pensé pour mettre en lumière l’énergie d'UniPop et la richesse de ses activités.
+      </p>
+      <a class="btn" href="#top">Participer à UniPop in Action</a>
+    </div>
+
+    <svg class="wave-top" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#0d1c37" d="M0,120 C300,200 500,40 900,100 C1200,150 1400,80 1440,60 L1440,0 L0,0 Z"></path>
+    </svg>
+
+    <svg class="wave-bottom" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#0b1220" d="M0,100 C300,40 600,200 900,120 C1200,60 1400,140 1440,160 L1440,200 L0,200 Z"></path>
+    </svg>
+  </section>
+
+  <footer>
+    UniPop in Action • Page événementielle
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const videos = document.querySelectorAll('video');
+      videos.forEach(video => {
+        video.muted = true;
+        video.playsInline = true;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      });
+
+      const countdownDays = document.getElementById('countdown-days');
+
+      function updateCountdown() {
+        const now = new Date();
+        const year = now.getFullYear();
+        let eventDate = new Date(year, 4, 8, 11, 0, 0); // 8 mai, 11h00
+
+        if (now > eventDate) {
+          eventDate = new Date(year + 1, 4, 8, 11, 0, 0);
+        }
+
+        const diff = eventDate - now;
+        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+        countdownDays.textContent = days;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+    });
+  </script>
 </body>
 </html>
