@@ -115,6 +115,7 @@
         0 12px 35px rgba(77,97,212,.24),
         inset 0 1px 0 rgba(255,255,255,.10);
       transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+      cursor:pointer;
     }
 
     .btn:hover{
@@ -342,6 +343,267 @@
           inset 0 1px 0 rgba(255,255,255,.15),
           0 0 24px rgba(127,109,255,.20);
       }
+    }
+
+    /* INFO POPUP */
+    .info-toast{
+      position:fixed;
+      left:28px;
+      bottom:28px;
+      z-index:40;
+      width:min(360px, calc(100vw - 32px));
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:14px 16px;
+      border-radius:22px;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(111,193,255,.16), transparent 30%),
+        radial-gradient(circle at 88% 22%, rgba(214,120,255,.14), transparent 34%),
+        linear-gradient(135deg, rgba(20,38,72,.88), rgba(28,45,92,.82) 58%, rgba(72,55,122,.78));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:
+        0 18px 38px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.10),
+        0 0 18px rgba(93,143,255,.10);
+      backdrop-filter:blur(18px) saturate(145%);
+      -webkit-backdrop-filter:blur(18px) saturate(145%);
+      opacity:0;
+      transform:translateY(16px) scale(.98);
+      pointer-events:none;
+      transition:opacity .35s ease, transform .35s ease;
+      cursor:pointer;
+    }
+
+    .info-toast.show{
+      opacity:1;
+      transform:translateY(0) scale(1);
+      pointer-events:auto;
+    }
+
+    .info-toast.hide{
+      opacity:0;
+      transform:translateY(14px) scale(.98);
+      pointer-events:none;
+    }
+
+    .info-toast-icon{
+      flex:0 0 48px;
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:
+        linear-gradient(135deg, rgba(95,141,255,.24), rgba(139,120,255,.20)),
+        linear-gradient(180deg, rgba(36,64,126,.18), rgba(104,84,176,.14));
+      border:1px solid rgba(255,255,255,.10);
+      color:#eef4ff;
+    }
+
+    .info-toast-text{
+      min-width:0;
+      flex:1;
+    }
+
+    .info-toast-title{
+      font-size:1rem;
+      font-weight:800;
+      color:#fff;
+      line-height:1.2;
+      margin:0 0 4px;
+    }
+
+    .info-toast-sub{
+      margin:0;
+      color:#d7e4fb;
+      font-size:.93rem;
+      line-height:1.35;
+    }
+
+    .info-toast-close{
+      flex:0 0 auto;
+      width:32px;
+      height:32px;
+      border:0;
+      border-radius:12px;
+      background:rgba(255,255,255,.06);
+      color:#dbe7ff;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition:background .2s ease, transform .2s ease;
+    }
+
+    .info-toast-close:hover{
+      background:rgba(255,255,255,.12);
+      transform:scale(1.03);
+    }
+
+    /* INFO MODAL */
+    .info-modal{
+      position:fixed;
+      inset:0;
+      z-index:60;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      background:rgba(5,10,18,.62);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity .28s ease, visibility .28s ease;
+    }
+
+    .info-modal.open{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+    }
+
+    .info-modal-card{
+      position:relative;
+      width:min(760px, 100%);
+      border-radius:32px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 14% 16%, rgba(111,193,255,.16), transparent 30%),
+        radial-gradient(circle at 84% 12%, rgba(214,120,255,.14), transparent 32%),
+        linear-gradient(135deg, rgba(20,38,72,.94), rgba(28,45,92,.90) 60%, rgba(64,50,112,.88));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:
+        0 28px 70px rgba(0,0,0,.38),
+        inset 0 1px 0 rgba(255,255,255,.10),
+        0 0 30px rgba(93,143,255,.12);
+    }
+
+    .info-modal-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 22%),
+        radial-gradient(circle at center, rgba(255,255,255,.03), transparent 60%);
+      pointer-events:none;
+    }
+
+    .info-modal-close{
+      position:absolute;
+      top:18px;
+      right:18px;
+      width:42px;
+      height:42px;
+      border:0;
+      border-radius:14px;
+      background:rgba(255,255,255,.08);
+      color:#eef4ff;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      z-index:2;
+      transition:background .2s ease, transform .2s ease;
+    }
+
+    .info-modal-close:hover{
+      background:rgba(255,255,255,.14);
+      transform:scale(1.04);
+    }
+
+    .info-modal-header{
+      position:relative;
+      z-index:1;
+      padding:34px 34px 22px;
+      text-align:center;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .info-modal-eyebrow{
+      color:#cfe0ff;
+      font-size:1rem;
+      margin-bottom:10px;
+      opacity:.92;
+    }
+
+    .info-modal-title{
+      margin:0;
+      font-size:clamp(2.2rem, 5vw, 4.2rem);
+      line-height:.95;
+      font-weight:900;
+      letter-spacing:-.05em;
+      color:#fff;
+    }
+
+    .info-modal-title .script{
+      font-style:italic;
+      font-weight:800;
+      color:#dff2ff;
+    }
+
+    .info-modal-body{
+      position:relative;
+      z-index:1;
+      padding:26px 34px 24px;
+    }
+
+    .info-list{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px 16px;
+    }
+
+    .info-item{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .info-item-icon{
+      flex:0 0 38px;
+      width:38px;
+      height:38px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:
+        linear-gradient(135deg, rgba(95,141,255,.20), rgba(139,120,255,.18)),
+        linear-gradient(180deg, rgba(36,64,126,.18), rgba(104,84,176,.14));
+      border:1px solid rgba(255,255,255,.08);
+      color:#eef4ff;
+    }
+
+    .info-item-text{
+      font-size:1.02rem;
+      line-height:1.45;
+      color:#ecf3ff;
+    }
+
+    .info-item-text strong{
+      color:#fff;
+      font-weight:850;
+    }
+
+    .info-modal-note{
+      padding:0 34px 18px;
+      color:#d7e4fb;
+      text-align:center;
+      font-size:1rem;
+      line-height:1.6;
+    }
+
+    .info-modal-actions{
+      position:relative;
+      z-index:1;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      padding:0 34px 34px;
     }
 
     /* CARDS */
@@ -605,6 +867,10 @@
       .countdown-strip{
         margin-top:10px;
       }
+
+      .info-list{
+        grid-template-columns:1fr;
+      }
     }
 
     @media (max-width:720px){
@@ -668,10 +934,152 @@
       .countdown-days{
         font-size:1.6rem;
       }
+
+      .info-toast{
+        left:12px;
+        right:12px;
+        bottom:12px;
+        width:auto;
+      }
+
+      .info-modal{
+        padding:12px;
+      }
+
+      .info-modal-header{
+        padding:28px 22px 18px;
+      }
+
+      .info-modal-body{
+        padding:20px 22px 16px;
+      }
+
+      .info-modal-note{
+        padding:0 22px 16px;
+      }
+
+      .info-modal-actions{
+        padding:0 22px 24px;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- SMALL INFO POPUP -->
+  <div class="info-toast" id="info-toast" aria-label="Informations rapides">
+    <div class="info-toast-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 8.5C12.8284 8.5 13.5 7.82843 13.5 7C13.5 6.17157 12.8284 5.5 12 5.5C11.1716 5.5 10.5 6.17157 10.5 7C10.5 7.82843 11.1716 8.5 12 8.5Z" fill="currentColor"/>
+        <path d="M11 10.5H13V18H11V10.5Z" fill="currentColor"/>
+        <path d="M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75ZM4.25 12C4.25 7.7198 7.7198 4.25 12 4.25C16.2802 4.25 19.75 7.7198 19.75 12C19.75 16.2802 16.2802 19.75 12 19.75C7.7198 19.75 4.25 16.2802 4.25 12Z" fill="currentColor"/>
+      </svg>
+    </div>
+
+    <div class="info-toast-text" id="open-info-modal" role="button" tabindex="0" aria-label="Ouvrir les informations pratiques">
+      <p class="info-toast-title">Infos pratiques</p>
+      <p class="info-toast-sub">Parking, gratuit, couvert, thématiques… cliquez pour en savoir plus.</p>
+    </div>
+
+    <button class="info-toast-close" id="info-toast-close" aria-label="Fermer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- LARGE INFO MODAL -->
+  <div class="info-modal" id="info-modal" aria-hidden="true">
+    <div class="info-modal-card" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
+      <button class="info-modal-close" id="info-modal-close" aria-label="Fermer la fenêtre">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="info-modal-header">
+        <div class="info-modal-eyebrow">Infos</div>
+        <h2 class="info-modal-title" id="info-modal-title">UniPop <span class="script">in Action</span></h2>
+      </div>
+
+      <div class="info-modal-body">
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M7 5H17L20 10V18H18V16H6V18H4V10L7 5Z" fill="currentColor"/>
+                <circle cx="7.5" cy="13.5" r="1.5" fill="#10233f"/>
+                <circle cx="16.5" cy="13.5" r="1.5" fill="#10233f"/>
+              </svg>
+            </div>
+            <div class="info-item-text"><strong>Parking gratuit</strong><br>Accès facile sur place pour les visiteurs.</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3L20 7V12C20 16.418 16.866 20.321 12 21C7.13401 20.321 4 16.418 4 12V7L12 3Z" fill="currentColor"/>
+                <path d="M9 12L11 14L15 10" stroke="#10233f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="info-item-text"><strong>Événement gratuit</strong><br>Entrée libre tout au long de la journée.</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3L20 8V16L12 21L4 16V8L12 3Z" fill="currentColor"/>
+                <path d="M12 7L16 9.5V14.5L12 17L8 14.5V9.5L12 7Z" fill="#10233f"/>
+              </svg>
+            </div>
+            <div class="info-item-text"><strong>Expérience immersive</strong><br>Ateliers, démonstrations et rencontres dans une ambiance vivante.</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M5 11C5 7.13401 8.13401 4 12 4C15.866 4 19 7.13401 19 11V18H5V11Z" fill="currentColor"/>
+                <path d="M4 18H20V20H4V18Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="info-item-text"><strong>Entièrement couvert</strong><br>Profitez de l’événement confortablement, quel que soit le temps.</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 4L3 8L12 12L21 8L12 4Z" fill="currentColor"/>
+                <path d="M6 10.5V14.5C6 16.433 8.68629 18 12 18C15.3137 18 18 16.433 18 14.5V10.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="info-item-text"><strong>Plusieurs thématiques</strong><br>Découvrez des univers variés autour de l’apprentissage et de la créativité.</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M7 3H9V5H15V3H17V5H20V21H4V5H7V3Z" fill="currentColor"/>
+                <path d="M7 10H17" stroke="#10233f" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 14H14" stroke="#10233f" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="info-item-text"><strong>Programme riche</strong><br>Une journée complète de 11h00 à 18h00, pensée pour surprendre et inspirer.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-modal-note">
+        Cliquez ci-dessous pour découvrir le programme ou refermez cette fenêtre pour continuer votre visite.
+      </div>
+
+      <div class="info-modal-actions">
+        <a class="btn" href="#programme" id="info-modal-programme">Découvrir le programme</a>
+        <button class="btn btn-outline" type="button" id="info-modal-dismiss">Continuer la visite</button>
+      </div>
+    </div>
+  </div>
 
   <section class="hero" id="top">
     <div class="hero-floating">
@@ -771,76 +1179,49 @@
       <div class="features-wrap">
         <div class="feature">
           <div class="icon">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-    <path d="M12 3C10.343 3 9 4.343 9 6V11C9 12.657 10.343 14 12 14C13.657 14 15 12.657 15 11V6C15 4.343 13.657 3 12 3Z" 
-          fill="currentColor"/>
-    <path d="M5 11C5 14.313 7.687 17 11 17H13C16.313 17 19 14.313 19 11H17C17 13.209 15.209 15 13 15H11C8.791 15 7 13.209 7 11H5Z" 
-          fill="currentColor"/>
-    <path d="M11 19H13V21H11V19Z" fill="currentColor"/>
-  </svg>
-</div>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3C10.343 3 9 4.343 9 6V11C9 12.657 10.343 14 12 14C13.657 14 15 12.657 15 11V6C15 4.343 13.657 3 12 3Z" fill="currentColor"/>
+              <path d="M5 11C5 14.313 7.687 17 11 17H13C16.313 17 19 14.313 19 11H17C17 13.209 15.209 15 13 15H11C8.791 15 7 13.209 7 11H5Z" fill="currentColor"/>
+              <path d="M11 19H13V21H11V19Z" fill="currentColor"/>
+            </svg>
+          </div>
           <h4>Conférences inspirantes</h4>
         </div>
 
         <div class="feature">
-<div class="icon">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-
-    <!-- Handles -->
-    <circle cx="7" cy="17" r="2" fill="currentColor"/>
-    <circle cx="7" cy="7" r="2" fill="currentColor"/>
-
-    <!-- Pivot -->
-    <circle cx="10" cy="12" r="1.2" fill="currentColor"/>
-
-    <!-- Blades -->
-    <path d="M10 12L20 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M10 12L20 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-
-  </svg>
-</div>
+          <div class="icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <circle cx="7" cy="17" r="2" fill="currentColor"/>
+              <circle cx="7" cy="7" r="2" fill="currentColor"/>
+              <circle cx="10" cy="12" r="1.2" fill="currentColor"/>
+              <path d="M10 12L20 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M10 12L20 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h4>Expériences créatives</h4>
         </div>
 
         <div class="feature">
           <div class="icon">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-
-    <!-- Burger Top Bun -->
-    <path d="M4 9C4 6.8 6.5 5 12 5C17.5 5 20 6.8 20 9H4Z" fill="currentColor"/>
-
-    <!-- Burger Filling -->
-    <path d="M4 11H20V13H4V11Z" fill="currentColor"/>
-
-    <!-- Burger Bottom Bun -->
-    <path d="M4 14C4 15.5 5.5 17 12 17C18.5 17 20 15.5 20 14H4Z" fill="currentColor"/>
-
-    <!-- Drink Cup -->
-    <path d="M17 4H21L20 10H18L17 4Z" fill="currentColor"/>
-
-    <!-- Straw -->
-    <path d="M19 2H20V4H19V2Z" fill="currentColor"/>
-
-  </svg>
-</div>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M4 9C4 6.8 6.5 5 12 5C17.5 5 20 6.8 20 9H4Z" fill="currentColor"/>
+              <path d="M4 11H20V13H4V11Z" fill="currentColor"/>
+              <path d="M4 14C4 15.5 5.5 17 12 17C18.5 17 20 15.5 20 14H4Z" fill="currentColor"/>
+              <path d="M17 4H21L20 10H18L17 4Z" fill="currentColor"/>
+              <path d="M19 2H20V4H19V2Z" fill="currentColor"/>
+            </svg>
+          </div>
           <h4>Food & Drinks</h4>
         </div>
 
         <div class="feature">
           <div class="icon">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-    
-    <!-- Note stem -->
-    <path d="M14 4V14.5C13.5 14.2 12.8 14 12 14C10.3 14 9 15.1 9 16.5C9 17.9 10.3 19 12 19C13.7 19 15 17.9 15 16.5V8L20 7V4L14 5V4Z" fill="currentColor"/>
-
-    <!-- Sound wave left -->
-    <path d="M5 10C4 11 4 13 5 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-
-    <!-- Sound wave right -->
-    <path d="M7 9C5.5 11 5.5 13 7 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-
-  </svg>
-</div>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M14 4V14.5C13.5 14.2 12.8 14 12 14C10.3 14 9 15.1 9 16.5C9 17.9 10.3 19 12 19C13.7 19 15 17.9 15 16.5V8L20 7V4L14 5V4Z" fill="currentColor"/>
+              <path d="M5 10C4 11 4 13 5 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M7 9C5.5 11 5.5 13 7 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h4>Musique & ambiance</h4>
         </div>
       </div>
@@ -943,6 +1324,102 @@
 
       updateCountdown();
       setInterval(updateCountdown, 60000);
+
+      const toast = document.getElementById('info-toast');
+      const toastClose = document.getElementById('info-toast-close');
+      const toastTrigger = document.getElementById('open-info-modal');
+      const modal = document.getElementById('info-modal');
+      const modalClose = document.getElementById('info-modal-close');
+      const modalDismiss = document.getElementById('info-modal-dismiss');
+      const modalProgramme = document.getElementById('info-modal-programme');
+
+      let toastTimer;
+      let toastVisible = false;
+
+      function showToast(){
+        if (!toast) return;
+        toast.classList.remove('hide');
+        toast.classList.add('show');
+        toastVisible = true;
+
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          hideToast();
+        }, 5000);
+      }
+
+      function hideToast(){
+        if (!toast) return;
+        toast.classList.remove('show');
+        toast.classList.add('hide');
+        toastVisible = false;
+      }
+
+      function openModal(){
+        if (!modal) return;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        hideToast();
+      }
+
+      function closeModal(){
+        if (!modal) return;
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      if (toastTrigger) {
+        toastTrigger.addEventListener('click', openModal);
+        toastTrigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal();
+          }
+        });
+      }
+
+      if (toast) {
+        toast.addEventListener('click', (e) => {
+          if (e.target.closest('#info-toast-close')) return;
+          if (!e.target.closest('#open-info-modal')) openModal();
+        });
+      }
+
+      if (toastClose) {
+        toastClose.addEventListener('click', (e) => {
+          e.stopPropagation();
+          hideToast();
+        });
+      }
+
+      if (modalClose) modalClose.addEventListener('click', closeModal);
+      if (modalDismiss) modalDismiss.addEventListener('click', closeModal);
+
+      if (modalProgramme) {
+        modalProgramme.addEventListener('click', () => {
+          closeModal();
+        });
+      }
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (modal && modal.classList.contains('open')) {
+            closeModal();
+          } else if (toastVisible) {
+            hideToast();
+          }
+        }
+      });
+
+      showToast();
     });
   </script>
 </body>
