@@ -343,6 +343,14 @@
           inset 0 1px 0 rgba(255,255,255,.15),
           0 0 24px rgba(127,109,255,.20);
       }
+      .info-toast-more{
+  display:block;
+  margin-top:4px; /* halber CR Effekt */
+  font-weight:700;
+  font-style:italic;
+  color:#eef4ff;
+  opacity:.95;
+     }
     }
 
     /* INFO POPUP */
@@ -978,8 +986,11 @@
 
     <div class="info-toast-text" id="open-info-modal" role="button" tabindex="0" aria-label="Ouvrir les informations pratiques">
       <p class="info-toast-title">Infos pratiques</p>
-      <p class="info-toast-sub">Parking à proximité,événement gratuit, couvert, différentes thématiques, Food Trucks… cliquez pour en savoir plus.</p>
-    </div>
+      <p class="info-toast-sub">
+  Parking à proximité, événement gratuit, couvert, différentes thématiques, Food Trucks…
+  <br>
+  <span class="info-toast-more">cliquez pour en savoir plus</span>
+</p>
 
     <button class="info-toast-close" id="info-toast-close" aria-label="Fermer">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -989,7 +1000,7 @@
     </button>
   </div>
 
-  <!-- LARGE INFO MODAL -->
+    <!-- LARGE INFO MODAL -->
   <div class="info-modal" id="info-modal" aria-hidden="true">
     <div class="info-modal-card" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
       <button class="info-modal-close" id="info-modal-close" aria-label="Fermer la fenêtre">
