@@ -133,7 +133,6 @@
 
     .spacer-32{height:32px}
 
-    /* HERO */
     .hero{
       position:relative;
       min-height:100vh;
@@ -216,7 +215,6 @@
       height:150px;
     }
 
-    /* HERO COUNTDOWN BADGE */
     .hero-floating{
       position:absolute;
       right:2.8%;
@@ -342,20 +340,19 @@
           0 20px 46px rgba(0,0,0,.26),
           inset 0 1px 0 rgba(255,255,255,.15),
           0 0 24px rgba(127,109,255,.20);
-           }
+      }
     }
 
-    /* INFO POPUP */
     .info-toast{
       position:fixed;
       left:28px;
       bottom:28px;
       z-index:40;
-      width:min(360px, calc(100vw - 32px));
+      width:min(460px, calc(100vw - 32px));
       display:flex;
       align-items:center;
       gap:14px;
-      padding:14px 16px;
+      padding:16px 18px;
       border-radius:22px;
       background:
         radial-gradient(circle at 14% 18%, rgba(111,193,255,.16), transparent 30%),
@@ -421,6 +418,15 @@
       line-height:1.35;
     }
 
+    .info-toast-more{
+      display:block;
+      margin-top:4px;
+      font-weight:700;
+      font-style:italic;
+      color:#eef4ff;
+      opacity:.95;
+    }
+
     .info-toast-close{
       flex:0 0 auto;
       width:32px;
@@ -440,7 +446,6 @@
       transform:scale(1.03);
     }
 
-    /* INFO MODAL */
     .info-modal{
       position:fixed;
       inset:0;
@@ -606,7 +611,6 @@
       padding:0 34px 34px;
     }
 
-    /* CARDS */
     .cards{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -659,7 +663,6 @@
       font-size:1rem;
     }
 
-    /* FEATURES */
     .features-wrap{
       margin-top:44px;
       display:grid;
@@ -699,7 +702,6 @@
       line-height:1.35;
     }
 
-    /* MOMENTS */
     .moments{
       position:relative;
       overflow:hidden;
@@ -751,7 +753,6 @@
       line-height:1.35;
     }
 
-    /* BOTTOM HERO */
     .bottom-hero{
       position:relative;
       padding:120px 20px;
@@ -966,7 +967,6 @@
 </head>
 <body>
 
-  <!-- SMALL INFO POPUP -->
   <div class="info-toast" id="info-toast" aria-label="Informations rapides">
     <div class="info-toast-icon" aria-hidden="true">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -979,10 +979,11 @@
     <div class="info-toast-text" id="open-info-modal" role="button" tabindex="0" aria-label="Ouvrir les informations pratiques">
       <p class="info-toast-title">Infos pratiques</p>
       <p class="info-toast-sub">
-  Parking à proximité, événement gratuit, couvert, différentes thématiques, Food Trucks…
-  <br>
-  <span class="info-toast-more">cliquez pour en savoir plus</span>
-</p>
+        Parking à proximité, événement gratuit, couvert, différentes thématiques, Food Trucks…
+        <br>
+        <span class="info-toast-more">cliquez pour en savoir plus</span>
+      </p>
+    </div>
 
     <button class="info-toast-close" id="info-toast-close" aria-label="Fermer">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -992,7 +993,6 @@
     </button>
   </div>
 
-    <!-- LARGE INFO MODAL -->
   <div class="info-modal" id="info-modal" aria-hidden="true">
     <div class="info-modal-card" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
       <button class="info-modal-close" id="info-modal-close" aria-label="Fermer la fenêtre">
@@ -1027,7 +1027,7 @@
                 <path d="M9 12L11 14L15 10" stroke="#10233f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <div class="info-item-text"><strong>Événement gratuit</strong><br>Entrée libre tout au long de la journée + FOOD TRUCKS.</div>
+            <div class="info-item-text"><strong>Événement gratuit</strong><br>Entrée libre tout au long de la journée + Food Trucks.</div>
           </div>
 
           <div class="info-item">
@@ -1078,9 +1078,9 @@
       </div>
 
       <div class="info-modal-actions">
-        <a class="btn" href="assets/programme-unipop-in-action.pdf" download="Programme_UniPop_in_Action.pdf">
-  Découvrir le programme
-</a>
+        <a class="btn" href="assets/programme-unipop-in-action.pdf" download="Programme_UniPop_in_Action.pdf" id="info-modal-programme">
+          Découvrir le programme
+        </a>
         <button class="btn btn-outline" type="button" id="info-modal-dismiss">Continuer la visite</button>
       </div>
     </div>
@@ -1116,8 +1116,8 @@
 
       <div class="hero-actions">
         <a class="btn" href="assets/programme-unipop-in-action.pdf" download="Programme_UniPop_in_Action.pdf">
-  Découvrir le programme
-</a>
+          Découvrir le programme
+        </a>
         <a class="btn btn-outline" href="#moments">Voir les moments forts</a>
       </div>
     </div>
