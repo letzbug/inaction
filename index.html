@@ -6,6 +6,34 @@
   <title>UniPop in Action</title>
 
   <style>
+
+/* Dark scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b1730;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #5f8dff, #8b78ff);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7ab8ff, #9b7cff);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #5f8dff #0b1730;
+}
+
+/* ⬇️ danach kommt DEIN bestehender CSS Code */
+:root{
+  --bg:#07111f;
+  ...
     :root{
       --bg:#07111f;
       --bg2:#0b1730;
