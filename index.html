@@ -245,6 +245,147 @@
       margin-top:18px;
     }
 
+    /* NEW HERO THEMES BLOCK */
+    .hero-themes-wrap{
+      display:flex;
+      justify-content:center;
+      margin-top:24px;
+      position:relative;
+      z-index:2;
+    }
+
+    .hero-themes{
+      width:min(760px, 100%);
+      border-radius:24px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(111,193,255,.14), transparent 30%),
+        radial-gradient(circle at 86% 16%, rgba(214,120,255,.12), transparent 34%),
+        linear-gradient(135deg, rgba(20,38,72,.70), rgba(28,45,92,.62) 58%, rgba(72,55,122,.54));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:
+        0 18px 40px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.10),
+        0 0 18px rgba(93,143,255,.08);
+      backdrop-filter:blur(16px) saturate(145%);
+      -webkit-backdrop-filter:blur(16px) saturate(145%);
+      transform:scale(1);
+      transition:
+        transform .26s ease,
+        box-shadow .26s ease,
+        border-color .26s ease,
+        background .26s ease;
+    }
+
+    .hero-themes:hover,
+    .hero-themes.is-open{
+      transform:scale(1.02);
+      border-color:rgba(145,178,255,.28);
+      box-shadow:
+        0 24px 54px rgba(0,0,0,.26),
+        inset 0 1px 0 rgba(255,255,255,.11),
+        0 0 24px rgba(127,109,255,.10);
+      background:
+        radial-gradient(circle at 14% 18%, rgba(111,193,255,.18), transparent 30%),
+        radial-gradient(circle at 86% 16%, rgba(214,120,255,.15), transparent 34%),
+        linear-gradient(135deg, rgba(20,38,72,.78), rgba(28,45,92,.70) 58%, rgba(72,55,122,.62));
+    }
+
+    .hero-themes-trigger{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      min-height:70px;
+      padding:18px 24px;
+      border:0;
+      background:transparent;
+      color:#fff;
+      font-size:clamp(1.15rem, 2.3vw, 1.5rem);
+      font-weight:850;
+      letter-spacing:-.02em;
+      cursor:pointer;
+    }
+
+    .hero-themes-trigger:focus-visible{
+      outline:2px solid rgba(160,197,255,.7);
+      outline-offset:-2px;
+    }
+
+    .hero-themes-icon{
+      width:28px;
+      height:28px;
+      flex:0 0 28px;
+      display:grid;
+      place-items:center;
+      color:#edf4ff;
+      opacity:.95;
+      transition:transform .25s ease, opacity .25s ease;
+    }
+
+    .hero-themes.is-open .hero-themes-icon{
+      transform:rotate(180deg);
+    }
+
+    .hero-themes-panel{
+      max-height:0;
+      opacity:0;
+      overflow:hidden;
+      transition:max-height .42s ease, opacity .28s ease;
+    }
+
+    .hero-themes.is-open .hero-themes-panel{
+      max-height:900px;
+      opacity:1;
+    }
+
+    .hero-themes-inner{
+      padding:0 18px 18px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .theme-item{
+      margin-top:12px;
+      text-align:left;
+      border-radius:18px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.07);
+      overflow:hidden;
+    }
+
+    .theme-head{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:14px 16px 10px;
+    }
+
+    .theme-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      flex:0 0 10px;
+      margin-top:8px;
+      background:linear-gradient(135deg, #7ab8ff, #9b7cff);
+      box-shadow:0 0 12px rgba(122,141,255,.35);
+    }
+
+    .theme-title{
+      margin:0;
+      font-size:1.02rem;
+      line-height:1.35;
+      font-weight:850;
+      color:#fff;
+    }
+
+    .theme-body{
+      padding:0 16px 16px 38px;
+      color:#d8e5fb;
+      line-height:1.6;
+      font-size:.98rem;
+    }
+
     .hero-wave{
       position:absolute;
       left:0;
@@ -1006,6 +1147,37 @@
       .info-modal-actions{
         padding:0 22px 24px;
       }
+
+      .hero-themes-wrap{
+        margin-top:18px;
+      }
+
+      .hero-themes{
+        border-radius:20px;
+      }
+
+      .hero-themes:hover{
+        transform:none;
+      }
+
+      .hero-themes-trigger{
+        min-height:62px;
+        padding:16px 18px;
+        font-size:1.08rem;
+      }
+
+      .hero-themes-inner{
+        padding:0 12px 12px;
+      }
+
+      .theme-head{
+        padding:12px 13px 8px;
+      }
+
+      .theme-body{
+        padding:0 13px 13px 32px;
+        font-size:.94rem;
+      }
     }
   </style>
 </head>
@@ -1163,6 +1335,79 @@
           Découvrir le programme
         </a>
         <a class="btn btn-outline" href="#moments">Voir les moments forts</a>
+      </div>
+
+      <div class="hero-themes-wrap">
+        <div class="hero-themes" id="hero-themes">
+          <button
+            class="hero-themes-trigger"
+            id="hero-themes-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="hero-themes-panel"
+          >
+            <span>Explorer les thématiques</span>
+            <span class="hero-themes-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+
+          <div class="hero-themes-panel" id="hero-themes-panel">
+            <div class="hero-themes-inner">
+              <article class="theme-item">
+                <div class="theme-head">
+                  <span class="theme-dot" aria-hidden="true"></span>
+                  <h3 class="theme-title">Création &amp; Arts visuels</h3>
+                </div>
+                <div class="theme-body">
+                  Photo &amp; drone, photographie cyanotype, peinture acrylique, dessin et peinture, dessin numérique, dessin manga, calligraphie, gravure, modelage artistique, dessiner sans pression.
+                </div>
+              </article>
+
+              <article class="theme-item">
+                <div class="theme-head">
+                  <span class="theme-dot" aria-hidden="true"></span>
+                  <h3 class="theme-title">Artisanat &amp; Savoir-faire</h3>
+                </div>
+                <div class="theme-body">
+                  Bijoux, perlage, broderie, broderie sur métier, forge, gemmologie &amp; joaillerie.
+                </div>
+              </article>
+
+              <article class="theme-item">
+                <div class="theme-head">
+                  <span class="theme-dot" aria-hidden="true"></span>
+                  <h3 class="theme-title">Innovation &amp; Digital</h3>
+                </div>
+                <div class="theme-body">
+                  ICT &amp; space, intelligence artificielle, storytelling, réseaux sociaux.
+                </div>
+              </article>
+
+              <article class="theme-item">
+                <div class="theme-head">
+                  <span class="theme-dot" aria-hidden="true"></span>
+                  <h3 class="theme-title">Bien-être &amp; Développement personnel</h3>
+                </div>
+                <div class="theme-body">
+                  Coaching &amp; bien-être, home organising, famille &amp; vie professionnelle.
+                </div>
+              </article>
+
+              <article class="theme-item">
+                <div class="theme-head">
+                  <span class="theme-dot" aria-hidden="true"></span>
+                  <h3 class="theme-title">Autres univers à découvrir</h3>
+                </div>
+                <div class="theme-body">
+                  L’ancienne mécanique des Oldtimers, déclaration d’impôts.
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1469,6 +1714,64 @@
           }
         }
       });
+
+      const heroThemes = document.getElementById('hero-themes');
+      const heroThemesTrigger = document.getElementById('hero-themes-trigger');
+
+      function isMobileLike() {
+        return window.matchMedia('(max-width: 720px)').matches || window.matchMedia('(hover: none)').matches;
+      }
+
+      function openThemes() {
+        if (!heroThemes || !heroThemesTrigger) return;
+        heroThemes.classList.add('is-open');
+        heroThemesTrigger.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeThemes() {
+        if (!heroThemes || !heroThemesTrigger) return;
+        heroThemes.classList.remove('is-open');
+        heroThemesTrigger.setAttribute('aria-expanded', 'false');
+      }
+
+      function toggleThemes() {
+        if (!heroThemes) return;
+        if (heroThemes.classList.contains('is-open')) {
+          closeThemes();
+        } else {
+          openThemes();
+        }
+      }
+
+      if (heroThemes && heroThemesTrigger) {
+        heroThemes.addEventListener('mouseenter', () => {
+          if (!isMobileLike()) openThemes();
+        });
+
+        heroThemes.addEventListener('mouseleave', () => {
+          if (!isMobileLike()) closeThemes();
+        });
+
+        heroThemesTrigger.addEventListener('click', (e) => {
+          if (isMobileLike()) {
+            e.preventDefault();
+            toggleThemes();
+          }
+        });
+
+        heroThemesTrigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleThemes();
+          }
+        });
+
+        window.addEventListener('resize', () => {
+          if (!isMobileLike()) {
+            closeThemes();
+          }
+        });
+      }
 
       showToast();
     });
